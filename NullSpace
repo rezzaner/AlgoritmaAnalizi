@@ -1,0 +1,62 @@
+import numpy as np
+
+dim = 3
+matris = np.array([
+    [2,3,0,15],
+    [1,2,1,13],
+    [1,0,2,11]
+],dtype='float32')
+
+class GaussJordan():
+    @staticmethod
+    def echelon(arr):
+        for col in range(dim): # 0 dan baslayarak dim'e kadar her sutun # yukaridaki icin 3 sutun
+            for row in range(col+1,dim): # 0. sutun icin 2, 1. sutun icin 1, 2. sutun icin 0  satir islemi yapilacak
+                if arr[col][col] == 0: # Eger diyagondaki deger 0 ise diger sutuna gec
+                    break # Bu davranis yazinin ilerisinde duzeltilecek
+                elim_ratio = arr[row][col] / arr[col][col] # Her satir icin uygun hucredeki degerin 
+                # diyagonda o sutunda bulunan degere orani
+                arr[row] = arr[row] - elim_ratio * arr[col] # yukaridaki degerle diyagondaki satir
+                # carpilip mevcut satirdan cikarilir
+                # bu da mevcut hucreyi 0 yapar. 
+                # Bu islem yukaridaki matris icin uc kere yapildiginda echelon forma ulasilmis olur.
+    @staticmethod
+    def reducedEchelon(arr):
+        GaussJordan.echelon(arr) # Indirgenmis forma gecmesi icin ilk once echelon olmasi lazim
+        print(arr)
+        for col in reversed(range(dim)):
+            for row in reversed(range(col)): ## echelondaki islemleri bu sefer tersten yapiyoruz
+                if arr[col][col] == 0:
+                    break # Bu davranis yazinin ilerisinde duzeltilecek
+                elim_ratio = arr[row][col] / arr[col][col] 
+                arr[row] = arr[row] - elim_ratio * arr[col] 
+
+    @staticmethod
+    def solveSystem(arr):
+        GaussJordan.reducedEchelon(arr)
+        for idx, row in enumerate(arr): # son halde her satirda 0 olmayan iki deger kaliyor
+            yield row[-1]/row[idx]  # sag degeri soldakine bolersek sonuc cikiyor
+
+                
+GaussJordan.echelon(matris)
+print(matris)
+[[  2.    0.    0.    6. ]
+ [  0.    0.5   0.    1.5]
+ [  0.    0.    5.   20. ]]
+GaussJordan.reducedEchelon(matris)
+print(matris)
+
+for val in GaussJordan.solveSystem(matris):
+    print(val)
+[[  2.    0.    0.    6. ]
+ [  0.    0.5   0.    1.5]
+ [  0.    0.    5.   20. ]]
+[[  2.    0.    0.    6. ]
+ [  0.    0.5   0.    1.5]
+ [  0.    0.    5.   20. ]]
+[[  2.    0.    0.    6. ]
+ [  0.    0.5   0.    1.5]
+ [  0.    0.    5.   20. ]]
+3.0
+3.0
+4.0
