@@ -1,0 +1,87 @@
+import sys
+
+In [8]:
+my_l_1=[]
+my_l_2=my_l_1
+size_1=sys.getsizeof(my_l_1)
+print(size_1)
+my_l_1.append("test")
+size_2=sys.getsizeof(my_l_1)
+print(size_2)
+64
+96
+In [10]:
+size_1=sys.getsizeof(my_l_1)
+for i in range(20000):
+    my_l_1.append(str(i)+"test")
+    if(size_1!=sys.getsizeof(my_l_1)):
+        print("dizi yer değiştirdi,amortized cost")
+        size_1=sys.getsizeof(my_l_1)
+        print("size",size_1)
+        ------------------
+dizi degişti,amortized cost
+size 128
+dizi degişti,amortized cost
+size 192
+dizi degişti,amortized cost
+size 264
+dizi degişti,amortized cost
+size 344
+dizi degişti,amortized cost
+size 432
+dizi degişti,amortized cost
+size 528
+dizi degişti,amortized cost
+size 640
+dizi degişti,amortized cost
+size 768
+dizi degişti,amortized cost
+size 912
+dizi degişti,amortized cost
+size 1072
+dizi degişti,amortized cost
+size 1248
+dizi degişti,amortized cost
+size 1448
+dizi degişti,amortized cost
+size 1672
+dizi degişti,amortized cost
+size 1928
+dizi degişti,amortized cost
+size 2216
+dizi degişti,amortized cost
+size 2536
+dizi degişti,amortized cost
+size 2896
+dizi degişti,amortized cost
+size 3304
+dizi degişti,amortized cost
+size 3760
+dizi degişti,amortized cost
+size 4272
+dizi degişti,amortized cost
+size 4848
+dizi degişti,amortized cost
+size 5496
+dizi degişti,amortized cost
+size 6232
+dizi degişti,amortized cost
+size 7056
+dizi degişti,amortized cost
+size 7984
+dizi degişti,amortized cost
+size 9024
+dizi degişti,amortized cost
+size 10200
+dizi degişti,amortized cost
+size 11520
+dizi degişti,amortized cost
+size 54568
+dizi degişti,amortized cost
+size 61432
+dizi degişti,amortized cost
+size 69160
+dizi degişti,amortized cost
+size 77848
+dizi degişti,amortized cost
+size 87624
