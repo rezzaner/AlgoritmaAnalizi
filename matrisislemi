@@ -1,0 +1,69 @@
+from random import randint
+def create_A_vector(size):  # n size
+    my_vector=[]
+    for i in range(size):
+        my_vector.append(randint(0,9))
+        
+    return my_vector
+my_vector_1=create_A_vector(5)
+my_vector_1
+---------------------------------------
+
+def create_a_matrix(m,n):
+    my_matrix=[]
+    for i in range(m):
+        my_matrix.append(create_A_vector(n))
+    return my_matrix
+a=create_a_matrix(2,3)
+a
+---------------------------------------
+len(a),len(a[0])
+---------------------------------------
+def matrix_multiplication(a,b):
+    m=len(a)
+    n=len(a[0])
+    #n b nin row u
+    p=len(b[0])
+    
+    my_matrix=create_a_matrix(m,p)
+    
+    for i in range(m):
+        for j in range(p):
+            
+            vector_1=a[i]
+            vector_2=[i[j] for i in b]   #=b[j]=
+            
+            my_matrix[i][j]=vector_inner_product(vector_1 ,vector_2)
+            
+    return my_matrix
+a=create_a_matrix(2,3)
+b=create_a_matrix(3,5)
+c=matrix_multiplication(a,b)
+print(c)
+---------------------------------------
+a
+---------------------------------------
+b
+---------------------------------------
+c=matrix_multiplication(a,b)
+c
+---------------------------------------
+[i[2] for i in a]    #2. sütuna karşılık geliyor
+
+---------------------------------------
+def vector_inner_product(v1,v2):
+    if(len(v1)!=len(v2)):
+        print("vektörler aynı boyutta olmalı")
+        return
+    result=0
+    for i in range(len(v1)):
+        result=result+v1[i]*v2[i]      
+    
+    return result  
+---------------------------------------
+size=10
+my_vector_1=create_A_vector(size)
+my_vector_2=create_A_vector(size)
+print(my_vector_1,my_vector_2)
+vector_product=vector_inner_product(my_vector_1,my_vector_2)
+vector_product
