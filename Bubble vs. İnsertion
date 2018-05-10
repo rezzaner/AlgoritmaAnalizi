@@ -1,0 +1,92 @@
+import random
+
+def createRandom(n):
+    myarray=[]
+    for i in range(n):
+        myarray.append(random.randint(0,100))
+    return myarray
+def myBubble_Sort(my_array):
+    number_of_comparision=0
+    for passnum in range(len(my_array)-1,0,-1):
+        for i in range(passnum):
+            number_of_comparision=number_of_comparision+1
+            if my_array[i]>my_array[i+1]:
+                temp = my_array[i]
+                my_array[i] = my_array[i+1]
+                my_array[i+1] = temp
+    
+    return(number_of_comparision)
+n=10
+for i in range(3):
+    print(myBubble_Sort(createRandom(n)))
+ ------------------------------- 
+45
+45
+45
+n=20
+for i in range(3):
+    print(myBubble_Sort(createRandom(n)))
+     -------------------------------
+190
+190
+190
+ -------------------------------
+n=30
+for i in range(3):
+    print(myBubble_Sort(createRandom(n)))
+     -------------------------------
+435
+435
+435
+n=50
+ -------------------------------
+for i in range(3):
+    print(myBubble_Sort(createRandom(n)))
+     -------------------------------
+1225
+1225
+1225
+ -------------------------------
+def insertionsort( aList ):
+    comparison=0
+    for i in range( 1, len( aList ) ):
+        tmp = aList[i]
+        k = i
+        comparison=comparison+1
+        while k > 0 and tmp < aList[k - 1]:
+            aList[k] = aList[k - 1]
+            k -= 1
+            comparison=comparison+1
+        aList[k] = tmp
+    return(comparison)
+n=10
+for i in range(3):
+    print(insertionsort(createRandom(n)))
+     -------------------------------
+34
+34
+23
+ -------------------------------
+n=20
+for i in range(3):
+    print(insertionsort(createRandom(n)))
+     -------------------------------
+114
+133
+120
+n=30
+ -------------------------------
+for i in range(3):
+    print(insertionsort(createRandom(n)))
+     -------------------------------
+229
+246
+298
+ -------------------------------
+n=50
+for i in range(3):
+    print(insertionsort(createRandom(n)))
+     -------------------------------
+628
+588
+631
