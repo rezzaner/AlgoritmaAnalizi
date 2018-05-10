@@ -1,0 +1,54 @@
+import time
+import numpy as np
+import matplotlib.pyplot as plt
+  
+def fibo_loop_1(a,b,n):#karmaşıklığı n'dir
+    if(n>0):
+        #print(a,b,n)
+        n=n-1
+        t=a
+        a=b
+        b=t+b
+        fibo_loop_1(b,a+b,n)
+    else:
+        return a
+    
+def fibo_rec(n):
+    if(n<2):
+        return n
+    else:
+        return fibo_rec(n-1)+fibo_rec(n-2);
+def time_1_2_f(n):
+    time_1=int(round(time.time()))
+    fibo_rec(n)
+    time_2=int(round(time.time()))
+    return time_2-time_1
+
+def time_3_4_f(n):
+    time_3=int(round(time.time()))
+    fibo_loop_1(0,1,n)
+    time_4=int(round(time.time()))
+    return time_4-time_3
+x = []
+k=25
+for k in range(40):
+    x.append(k)
+y1 = []
+y2 = []
+i=25
+for i in range(40):
+    y1.append(time_1_2_f(i))
+    y2.append(time_3_4_f(i))
+print(y1)
+print("-------------")
+print(y2)
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 2, 4, 5, 8, 14, 22, 37, 63]
+-------------
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+plt.plot(x,y1,linewidth=4) #1.Doğru
+plt.plot(x,y2,linewidth=4) #2.Doğru
+[<matplotlib.lines.Line2D at 0x23d865a9b00>]
+plt.title('Algoritma Analizi')
+plt.ylabel('y ekseni')
+plt.xlabel('zaman')
+plt.show()
