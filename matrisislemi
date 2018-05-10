@@ -66,4 +66,4 @@ my_vector_1=create_A_vector(size)
 my_vector_2=create_A_vector(size)
 print(my_vector_1,my_vector_2)
 vector_product=vector_inner_product(my_vector_1,my_vector_2)
-vector_product
+vector_product 
