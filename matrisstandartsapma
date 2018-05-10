@@ -1,0 +1,103 @@
+from random import randint
+def create_A_vector(size):
+    my_vector=[]
+    for i in range(size):
+        my_vector.append(randint(0,9))
+    return my_vector
+
+def create_a_matrix(m,n):
+    my_matrix=[]
+    for i in range(m):
+        my_matrix.append(create_A_vector(n))
+    return my_matrix
+
+def maxBul(dizi):
+    max=dizi[0][0]
+    i=1
+    for i in range(len(dizi)):
+        for j in range(len(dizi[0])):
+            if(max<dizi[i][j]):
+                max=dizi[i][j]
+    return max
+    
+def minBul(dizi):
+    min=dizi[0][0]
+    i=1
+    for i in range(len(dizi)):
+        for j in range(len(dizi[0])):
+            if(min>dizi[i][j]):
+                min=dizi[i][j]
+    return min
+ 
+def ortalama(dizi): 
+    toplam = 0
+    for i in range(len(dizi)):
+        for j in range(len(dizi[0])):
+            toplam += dizi[i][j]
+    miktar = len(dizi)*len(dizi[0])
+    return toplam/miktar
+
+dizi=create_a_matrix(3,3)
+print(dizi)
+
+[[9, 2, 0], [4, 2, 1], [2, 9, 2]]
+maxBul(dizi)
+9
+
+minBul(dizi)
+0
+
+ortalama(dizi)
+3.4444444444444446
+
+
+import math
+def varyans(dizi,mean):
+    top=0
+    for i in range (len(dizi)):
+        for j in range(len(dizi[0])):
+            dizi[i][j]-=mean
+            dizi[i][j]*=dizi[i][j]
+    
+    i=0
+    j=0
+    for i in range (len(dizi)):
+        for j in range(len(dizi[0])):        
+            top+=dizi[i][j]
+    
+    return top/(len(dizi)*len(dizi[0]))
+
+def standarsapma(varyans_degeri):
+    stsapma = math.sqrt(varyans_degeri)
+    return stsapma
+
+mean=ortalama(dizi)
+varyans_degeri=varyans(dizi,mean)
+varyans_degeri
+9.802469135802468
+
+standarsapma(varyans_degeri)
+3.1308895119123044
+
+def solve(matrix, mul):
+    width = len(matrix)
+    if width == 1:
+        return mul * matrix[0][0]
+    else:
+        sign = -1
+        total = 0
+        for i in range(width):
+            m = []
+            for j in range(1, width):
+                buff = []
+                for k in range(width):
+                    if k != i:
+                        buff.append(matrix[j][k])
+                m.append(buff)
+            sign *= -1
+            total += mul * solve(m, sign * matrix[0][i])
+        return total
+
+#matrix = [[1,-2,3],[0,-3,-4],[0,0,-3]]
+print(solve(dizi, 1))
+-5471.675354366713
