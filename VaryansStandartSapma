@@ -1,0 +1,62 @@
+import math   # karekök için
+
+def stsapma(x1, x2, *y):
+    N = len(y) + 2 # Fonksiyona verilen parametre sayısı
+
+    # ortalamayı hesapla
+    toplam = x1 + x2
+    for z in y:
+        toplam += z
+    ort = toplam / N
+
+    karetoplam = (x1-ort)**2 + (x2-ort)**2
+    for z in y:
+        karetoplam += (z-ort)**2
+    stsap = math.sqrt(karetoplam / (N-1))
+
+    return stsap
+
+def varyans(standartsapma):
+    return standartsapma*standartsapma
+    
+    ----------
+    data = [1,2,2,3,3,3,3,4,4,5,5]
+    s_deger=stsapma( *data )
+  -------------------
+    v_deger=varyans(s_deger)
+  ------------------
+    print("Standart Sapma: ",s_deger,"\nVaryans: ",v_deger)
+  ---------------------
+    Standart Sapma:  1.250454462839956 
+    Varyans:  1.563636363636363
+  ----------------------
+def maxBul(dizi):
+    max=dizi[0]
+    i=1
+    for i in range(len(dizi)):
+        if(max<dizi[i]):
+            max=dizi[i]
+    return max
+    
+def minBul(dizi):
+    min=dizi[0]
+    i=1
+    for i in range(len(dizi)):
+        if(min>dizi[i]):
+            min=dizi[i]
+    return min
+ 
+def ortalama(gelen_sayilar):
+    miktar = len(gelen_sayilar)
+    toplam = 0
+    for i in gelen_sayilar:
+        toplam += i
+    return toplam/miktar
+    -------------------
+    dizi=[5,69,8,1,3,7,88,4]
+    maxBul(dizi),minBul(dizi),ortalama(dizi)
+    --------------------
+    dizi=[5,69,8,1,3,7,88,4]
+    maxBul(dizi),minBul(dizi),ortalama(dizi)
+    ----------------------
+    (88, 1, 23.125)
